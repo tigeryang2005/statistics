@@ -44,10 +44,12 @@ class LogResult(object):
         self.app_pkg = {}
         self.did = {}
         self.result = [[], [], [], [], []]
+        self.file_size = []
 
 
 def print_statistics_result(log_data, log_result):
     print 'log记录条数', len(log_data)
+    print '平均文件大小', sum(log_result.file_size) / len(log_result.file_size)
     print 'device', sorted(log_result.device.items(), key=operator.itemgetter(1), reverse=True)
     print '手机品牌型号数量:', len(log_result.device.keys())
     print 'os', sorted(log_result.os.items(), key=operator.itemgetter(1), reverse=True)
@@ -75,6 +77,7 @@ def statistics_logs(log, log_result):
         log_result.app_version[log.app_version] = log_result.app_version.get(log.app_version, 0) + 1
         log_result.app_name[log.app_name] = log_result.app_name.get(log.app_name, 0) + 1
         log_result.app_pkg[log.app_pkg] = log_result.app_pkg.get(log.app_pkg, 0) + 1
+        log_result.file_size.append(log.file_size)
         for l in log.logs:
             # pv
             log_result.did[log.did] = log_result.did.get(log.did, 0) + l[2]
