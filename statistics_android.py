@@ -43,7 +43,7 @@ class LogResult(object):
         self.app_name = {}
         self.app_pkg = {}
         self.did = {}
-        self.result = [[], [], [], [], []]
+        self.result = [[], [], [], [], [], []]
         self.file_size = []
 
 
